@@ -3,50 +3,40 @@ def merge(arrA, arrB):
     elements = len(arrA) + len(arrB)
     merged_arr = [0] * elements
 
-    if arrA[-1] < arrB[0]: 
-        merged_arr[len(arrA[:-1])] = arrA[-1]
-        merge_sort(arrA)
-    elif arrA[-1] > arrB[0]:
-        merged_arr[len(arrB[0:])] = arrB[0] 
-        merge_sort(arrB)
-    # Your code here
-    # if len(arrA) <= len(arrB): 
-    #     lowest_length = arrA
-    #     biggest_length = arrB
-    # else: 
-    #     lowest_length = arrB
-    #     biggest_length = arrB
-    # for i in range(0, len(lowest_length)):
-    # if lowest_length[i] > biggest_length[i]:
-        
-    #     merged_arr.append(biggest_length[i])
-    # else: 
-    #     merged_arr.append(lowest_length[i])
-        
-    
-    else: 
-
-
-        return merged_arr
+    a = 0
+    b = 0 
+    for i in range(0, elements): 
+        if a >= len(arrA): 
+            merged_arr[i] = arrB[b]
+            b+= 1
+        elif b >= len(arrB):
+            merged_arr[i] = arrA[a]
+            a+= 1
+        elif arrA[a] < arrB[b]: 
+            merged_arr
+        elif arrA[a] < arrB[b]:
+            merged_arr[i] = arrA[a]
+            a += 1
+        else: 
+            merged_arr[i] = arrB[b]
+            b += 1
+    return merged_arr
 
 
 # TO-DO: implement the Merge Sort function below USING RECURSION
 def merge_sort(arr):
     # Your code here
     
-    
-    mid = (len(arr))//2
-    chunk_1 = arr[mid:]
-    chunk_2 = arr[:mid]
-    # merged_arr = merge(chunk_1, chunk_2)
-    if len(arr) == 2: 
-        finalarray = []
-        finalarray.append(chunk_1)
-        finalarray.append(chunk_2)
-        print('final', finalarray)
+    if(len(arr) <= 1):
+        return arr
     else:
-        merged_arr = merge(chunk_1, chunk_2)
-        merge_sort(merged_arr)
+        mid = (len(arr))//2
+        chunk_1 = arr[mid:]
+        chunk_2 = arr[:mid]
+        merge_sort(chunk_1)
+        merge_sort(chunk_2)
+    # merged_arr = merge(chunk_1, chunk_2)
+        return merge(chunk_1, chunk_2)
     
 
 
